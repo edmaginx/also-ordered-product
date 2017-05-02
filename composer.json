@@ -2,7 +2,7 @@
   "name": "maginx/module-also-ordered-product",
   "description": "show products other customer also bought",
   "type": "magento2-module",
-  "license": "OSL",
+  "license": "OSL-3.0",
   "minimum-stability": "alpha",
   "version": "1.0.0",
   "autoload": {
