@@ -2,6 +2,8 @@
   "name": "maginx/module-also-ordered-product",
   "description": "show products other customer also bought",
   "type": "magento2-module",
+  "license": "OSL",
+  "minimum-stability": "alpha",
   "version": "1.0.0",
   "autoload": {
     "psr-4": {
