@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="maginx" translate="label" sortOrder="6400">
+            <label>Maginx</label>
+        </tab>
+        <section id="maginx" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Also Ordered Product</label>
+            <tab>maginx</tab>
+            <resource>Maginx_AlsoOrderedProduct::config</resource>
+            <group id="ordered" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Also Ordered Product Settings</label>
+                <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable This Feature</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="lastest_order_id" translate="label comment" type="text" sortOrder="20" showInDefault="0" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Last Order Id Cron Ran From</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

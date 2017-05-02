@@ -1,0 +1,15 @@
+{
+  "name": "maginx/module-also-ordered-product",
+  "description": "show products other customer also bought",
+  "type": "magento2-module",
+  "version": "1.0.0",
+  "autoload": {
+    "psr-4": {
+      "Maginx\\AlsoOrderedProduct\\":""
+    },
+    "files": [ "registration.php" ]
+  },
+  "require": {
+    "magento/module-catalog": "*"
+  }
+}
