@@ -12,6 +12,6 @@
     "files": [ "registration.php" ]
   },
   "require": {
-    "magento/module-catalog": "*"
+    "magento/module-catalog": "101.*"
   }
 }
