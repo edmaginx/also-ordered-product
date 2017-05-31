@@ -8,8 +8,9 @@ class Index extends \Magento\Framework\App\Action\Action
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory,
-        \Maginx\AlsoOrderedProduct\Helper\Data $helper)
-    {
+        \Maginx\AlsoOrderedProduct\Helper\Data $helper
+    ) {
+    
         $this->helper = $helper;
         $this->resultPageFactory = $resultPageFactory;        
         return parent::__construct($context);

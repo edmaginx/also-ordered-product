@@ -41,7 +41,7 @@ class Main extends \Magento\Catalog\Block\Product\AbstractProduct implements \Ma
         $productSku = $product->getSku();
 
         $this->_itemCollection = $this->_helper->getOrderedCollectionFromSku($productSku);
-        if (!empty($this->_itemCollection)){
+        if (!empty($this->_itemCollection)) {
             //$this->_itemCollection->setPositionOrder()->addStoreFilter();
 
             if ($this->moduleManager->isEnabled('Magento_Checkout')) {
@@ -70,7 +70,8 @@ class Main extends \Magento\Catalog\Block\Product\AbstractProduct implements \Ma
         return $this->_itemCollection;
     }
 
-    public function isEnable(){
+    public function isEnable()
+    {
         return $this->_scopeConfig->getValue('maginx/ordered/enable', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
     }
 

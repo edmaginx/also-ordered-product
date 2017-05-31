@@ -4,7 +4,7 @@ namespace Maginx\AlsoOrderedProduct\Api;
 use Maginx\AlsoOrderedProduct\Api\Data\AlsoOrderedInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 
-interface AlsoOrderedRepositoryInterface 
+interface AlsoOrderedRepositoryInterface
 {
     public function save(AlsoOrderedInterface $page);
 

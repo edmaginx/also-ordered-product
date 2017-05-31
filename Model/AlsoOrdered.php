@@ -14,7 +14,8 @@ class AlsoOrdered extends \Magento\Framework\Model\AbstractModel implements \Mag
         return [self::CACHE_TAG . '_' . $this->getId()];
     }
 
-    public function getRecordIdBySku($sku){
+    public function getRecordIdBySku($sku)
+    {
         return $this->_getResource()->getRecordIdBySku($sku);
     }
 

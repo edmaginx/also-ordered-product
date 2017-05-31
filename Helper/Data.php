@@ -24,8 +24,9 @@ class Data
         \Magento\Config\Model\ResourceModel\Config $resourceConfig,
         // \Magento\Sales\Model\ResourceModel\Order\CollectionFactory $orderCollectionFactory,
         \Magento\Sales\Model\Order $orderModel,
-        \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory)
-    {
+        \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory
+    ) {
+    
         // $this->_alsoOrderedFactory = $alsoOrderedFactory;
         $this->_alsoOrdered = $alsoOrdered;
         $this->_alsoOrderedRepository = $alsoOrderedRepository;
@@ -37,11 +38,12 @@ class Data
         $this->_productCollectionFactory = $productCollectionFactory;
     }
 
-    public function batchOrderRunAndRecord(){
+    public function batchOrderRunAndRecord()
+    {
         //$this->_scopeConfig->getValue('maginx/ordered/lastest_order_id', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $lastOrderIdObject = $this->_scopeConfig->getValue('maginx/ordered/lastest_order_id', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 
-        if (empty($lastOrderIdObject)){
+        if (empty($lastOrderIdObject)) {
             //create one
             $this->_resourceConfig->saveConfig(
                 'maginx/ordered/lastest_order_id',
@@ -80,7 +82,7 @@ class Data
             $this->updateSkuRecordFromOrder($collection);
             $lastId = $order->getId();
         }
-        if ($lastId > $lastOrderId){
+        if ($lastId > $lastOrderId) {
             //$lastOrderIdObject->setPlainValue($lastId)->save();
             $this->_resourceConfig->saveConfig(
                 'maginx/ordered/lastest_order_id',
@@ -91,12 +93,13 @@ class Data
         }
     }
 
-    public function updateSkuRecordFromOrder($itemsArray){
-    	$skuArray = array();
-    	foreach($itemsArray as $item){
-    		$skuArray[] = $item->getData('sku');
-    	}
-    	foreach($skuArray as $sku){
+    public function updateSkuRecordFromOrder($itemsArray)
+    {
+        $skuArray = array();
+        foreach($itemsArray as $item){
+            $skuArray[] = $item->getData('sku');
+        }
+        foreach($skuArray as $sku){
             $tempOtherSkuArray = $skuArray;
             if(($key = array_search($sku, $skuArray)) !== false) {
                 unset($tempOtherSkuArray[$key]);
@@ -106,12 +109,12 @@ class Data
             $model  = $this->_alsoOrdered;
             $recordId = $model->getRecordIdBySku($sku);
 
-            if ($recordId){
+            if ($recordId) {
                 //road record
                 $skuAlsoOrderedInfo = $modelRepo->getById($recordId);
                 $alsoOrderedRecord = $skuAlsoOrderedInfo->getData('also_ordered_record');
-                $updatedRecord = $this->handleRecord($alsoOrderedRecord,$tempOtherSkuArray);
-                $skuAlsoOrderedInfo->setData('also_ordered_record',$updatedRecord);
+                $updatedRecord = $this->handleRecord($alsoOrderedRecord, $tempOtherSkuArray);
+                $skuAlsoOrderedInfo->setData('also_ordered_record', $updatedRecord);
                 $modelRepo->save($skuAlsoOrderedInfo);
             }else{
                 //create record
@@ -120,29 +123,30 @@ class Data
                 $modelFactory->setData('product_sku',$sku);
                 $initArray = array();
                 foreach ($tempOtherSkuArray as $temp){
-                    $initArray[$temp] = 1;
+                $initArray[$temp] = 1;
                 }
                 $modelFactory->setData('also_ordered_record',json_encode($initArray));
                 $modelFactory->save();*/
                 $skuAlsoOrderedInfo = $modelRepo->create();
-                $skuAlsoOrderedInfo->setData('product_sku',$sku);
+                $skuAlsoOrderedInfo->setData('product_sku', $sku);
                 $modelRepo->save($skuAlsoOrderedInfo);
                 $initArray = array();
                 foreach ($tempOtherSkuArray as $temp){
                     $initArray[$temp] = 1;
                 }
-                $skuAlsoOrderedInfo->setData('also_ordered_record',json_encode($initArray));
+                $skuAlsoOrderedInfo->setData('also_ordered_record', json_encode($initArray));
                 $modelRepo->save($skuAlsoOrderedInfo);
 
 
             }
-    	}
+        }
     }
 
-    public function handleRecord($alsoOrderedRecord,$skuArray){
+    public function handleRecord($alsoOrderedRecord,$skuArray)
+    {
         $recordArray = json_decode($alsoOrderedRecord, true);
         foreach($skuArray as $sku){
-            if (array_key_exists($sku,$recordArray)){
+            if (array_key_exists($sku, $recordArray)) {
                 $recordArray[$sku] = $recordArray[$sku] + 1;
             }else{
                 $recordArray[$sku] = 1;
@@ -152,23 +156,24 @@ class Data
     }
 
 
-    public function getOrderedCollectionFromSku($sku,$limit = 4){
+    public function getOrderedCollectionFromSku($sku,$limit = 4)
+    {
         $modelRepo = $this->_alsoOrderedRepository;
         $model  = $this->_alsoOrdered;
         $recordId = $model->getRecordIdBySku($sku);
-        if ($recordId){
+        if ($recordId) {
             $skuAlsoOrderedInfo = $modelRepo->getById($recordId);
             $alsoOrderedRecord = $skuAlsoOrderedInfo->getData('also_ordered_record');
             $recordArray = json_decode($alsoOrderedRecord, true);
             $isSuccess = arsort($recordArray);
-            if ($isSuccess){
+            if ($isSuccess) {
                 $newRecordArray = array_slice($recordArray, 0, $limit);
             }
             $mostOrderedSkusFilter = array();
             foreach ($newRecordArray as $sku => $count){
                 $mostOrderedSkusFilter[] = array('eq'=>$sku);
             }
-            if (count($mostOrderedSkusFilter)){
+            if (count($mostOrderedSkusFilter)) {
                 $collection = $this->_productCollectionFactory->create();
                 $collection->addFieldToFilter('sku', $mostOrderedSkusFilter);
                 $collection->setPageSize($limit); // fetching only 3 products

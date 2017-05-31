@@ -7,11 +7,12 @@ class Main
 
     public function __construct(
         Helper $helper
-    ){
+    ) {
         $this->_helper = $helper;
     }
 
-    public function execute(){
+    public function execute()
+    {
 
     }
 

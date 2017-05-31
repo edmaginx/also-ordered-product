@@ -19,8 +19,8 @@ class AlsoOrderedRepository implements \Maginx\AlsoOrderedProduct\Api\AlsoOrdere
         AlsoOrderedFactory $objectFactory,
         CollectionFactory $collectionFactory,
         SearchResultsInterfaceFactory $searchResultsFactory       
-    )
-    {
+    ) {
+    
         $this->objectFactory        = $objectFactory;
         $this->collectionFactory    = $collectionFactory;
         $this->searchResultsFactory = $searchResultsFactory;
@@ -90,7 +90,9 @@ class AlsoOrderedRepository implements \Maginx\AlsoOrderedProduct\Api\AlsoOrdere
         $searchResults->setTotalCount($collection->getSize());
         $sortOrders = $criteria->getSortOrders();
         if ($sortOrders) {
-            /** @var SortOrder $sortOrder */
+            /**
+ * @var SortOrder $sortOrder 
+*/
             foreach ($sortOrders as $sortOrder) {
                 $collection->addOrder(
                     $sortOrder->getField(),
@@ -106,4 +108,5 @@ class AlsoOrderedRepository implements \Maginx\AlsoOrderedProduct\Api\AlsoOrdere
         }
         $searchResults->setItems($objects);
         return $searchResults;        
-    }}
+    }
+}
