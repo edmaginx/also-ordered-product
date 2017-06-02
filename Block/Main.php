@@ -42,12 +42,9 @@ class Main extends \Magento\Catalog\Block\Product\AbstractProduct implements \Ma
 
         $this->_itemCollection = $this->_helper->getOrderedCollectionFromSku($productSku);
         if (!empty($this->_itemCollection)) {
-            //$this->_itemCollection->setPositionOrder()->addStoreFilter();
-
             if ($this->moduleManager->isEnabled('Magento_Checkout')) {
                 $this->_addProductAttributesAndPrices($this->_itemCollection);
             }
-            //$this->_itemCollection->addFieldToSelect('*');
             $this->_itemCollection->setVisibility($this->_catalogProductVisibility->getVisibleInCatalogIds());
             $this->_itemCollection->load();
 
@@ -93,5 +90,4 @@ class Main extends \Magento\Catalog\Block\Product\AbstractProduct implements \Ma
         }
         return false;
     }
-
 }

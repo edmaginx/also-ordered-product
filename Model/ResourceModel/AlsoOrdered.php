@@ -1,5 +1,6 @@
 <?php
 namespace Maginx\AlsoOrderedProduct\Model\ResourceModel;
+
 class AlsoOrdered extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 {
     protected function _construct()
@@ -18,5 +19,4 @@ class AlsoOrdered extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 
         return $connection->fetchOne($select, $bind);
     }
-
 }

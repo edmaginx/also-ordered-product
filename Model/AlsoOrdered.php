@@ -1,5 +1,6 @@
 <?php
 namespace Maginx\AlsoOrderedProduct\Model;
+
 class AlsoOrdered extends \Magento\Framework\Model\AbstractModel implements \Maginx\AlsoOrderedProduct\Api\Data\AlsoOrderedInterface, \Magento\Framework\DataObject\IdentityInterface
 {
     const CACHE_TAG = 'maginx_alsoorderedproduct_alsoordered';
@@ -18,6 +19,4 @@ class AlsoOrdered extends \Magento\Framework\Model\AbstractModel implements \Mag
     {
         return $this->_getResource()->getRecordIdBySku($sku);
     }
-
-
 }
