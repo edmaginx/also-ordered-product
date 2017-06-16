@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
-    <group id="default"> <!-- Doesn't need to be unique -->
+    <group id="also_ordered"> <!-- Doesn't need to be unique -->
         <job name="cron_also_ordered" instance="Maginx\AlsoOrderedProduct\Cron\Main" method="execute">
             <schedule>* * * * *</schedule>
         </job>
