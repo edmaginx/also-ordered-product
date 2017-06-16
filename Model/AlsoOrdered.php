@@ -1,7 +1,9 @@
 <?php
 namespace Maginx\AlsoOrderedProduct\Model;
 
-class AlsoOrdered extends \Magento\Framework\Model\AbstractModel implements \Maginx\AlsoOrderedProduct\Api\Data\AlsoOrderedInterface, \Magento\Framework\DataObject\IdentityInterface
+class AlsoOrdered extends \Magento\Framework\Model\AbstractModel implements
+    \Maginx\AlsoOrderedProduct\Api\Data\AlsoOrderedInterface,
+    \Magento\Framework\DataObject\IdentityInterface
 {
     const CACHE_TAG = 'maginx_alsoorderedproduct_alsoordered';
 

@@ -35,8 +35,8 @@ class Main extends \Magento\Catalog\Block\Product\AbstractProduct implements \Ma
 
     protected function _prepareData()
     {
-        $product = $this->_coreRegistry->registry('product');
         /* @var $product \Magento\Catalog\Model\Product */
+        $product = $this->_coreRegistry->registry('product');
 
         $productSku = $product->getSku();
 
