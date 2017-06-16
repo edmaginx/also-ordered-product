@@ -3,14 +3,14 @@ namespace Maginx\AlsoOrderedProduct\Setup;
 
 class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
 {
-    public function install(\Magento\Framework\Setup\SchemaSetupInterface $setup, \Magento\Framework\Setup\ModuleContextInterface $context)
-    {
+    public function install(
+        \Magento\Framework\Setup\SchemaSetupInterface $setup,
+        \Magento\Framework\Setup\ModuleContextInterface $context
+    ) {
+    
         $installer = $setup;
         $installer->startSetup();
-        //START: install stuff
-        //END:   install stuff
         
-        //START table setup
         $table = $installer->getConnection()->newTable(
             $installer->getTable('maginx_alsoorderedproduct_alsoordered')
         )->addColumn(
@@ -33,7 +33,6 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
             'Also Ordered Product Sku Record'
         );
         $installer->getConnection()->createTable($table);
-        //END   table setup
         $installer->endSetup();
     }
 }

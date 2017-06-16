@@ -31,7 +31,10 @@ class Data
 
     public function batchOrderRunAndRecord()
     {
-        $lastOrderIdObject = $this->_scopeConfig->getValue('maginx/ordered/lastest_order_id', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+        $lastOrderIdObject = $this->_scopeConfig->getValue(
+            'maginx/ordered/lastest_order_id',
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+        );
 
         if (empty($lastOrderIdObject)) {
             $this->_resourceConfig->saveConfig(
@@ -122,7 +125,6 @@ class Data
         return json_encode($recordArray);
     }
 
-
     public function getOrderedCollectionFromSku($sku, $limit = 4)
     {
         $modelRepo = $this->_alsoOrderedRepository;
@@ -140,7 +142,7 @@ class Data
             foreach ($newRecordArray as $sku => $count) {
                 $mostOrderedSkusFilter[] = ['eq'=>$sku];
             }
-            if (count($mostOrderedSkusFilter)) {
+            if (!empty($mostOrderedSkusFilter)) {
                 $collection = $this->_productCollectionFactory->create();
                 $collection->addFieldToFilter('sku', $mostOrderedSkusFilter);
                 $collection->setPageSize($limit); // fetching only 4 products by default

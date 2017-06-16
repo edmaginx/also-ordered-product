@@ -4,7 +4,8 @@ namespace Maginx\AlsoOrderedProduct\Block;
 use Magento\Catalog\Model\ResourceModel\Product\Collection;
 use Magento\Framework\View\Element\AbstractBlock;
 
-class Main extends \Magento\Catalog\Block\Product\AbstractProduct implements \Magento\Framework\DataObject\IdentityInterface
+class Main extends \Magento\Catalog\Block\Product\AbstractProduct implements
+    \Magento\Framework\DataObject\IdentityInterface
 {
 
     protected $_itemCollection;

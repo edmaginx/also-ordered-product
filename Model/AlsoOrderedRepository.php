@@ -14,16 +14,16 @@ use Magento\Framework\Api\SearchResultsInterfaceFactory;
 
 class AlsoOrderedRepository implements \Maginx\AlsoOrderedProduct\Api\AlsoOrderedRepositoryInterface
 {
-    protected $objectFactory;
-    protected $collectionFactory;
+    protected $_objectFactory;
+    protected $_collectionFactory;
     public function __construct(
         AlsoOrderedFactory $objectFactory,
         CollectionFactory $collectionFactory,
         SearchResultsInterfaceFactory $searchResultsFactory
     ) {
     
-        $this->objectFactory        = $objectFactory;
-        $this->collectionFactory    = $collectionFactory;
+        $this->_objectFactory        = $objectFactory;
+        $this->_collectionFactory    = $collectionFactory;
         $this->searchResultsFactory = $searchResultsFactory;
     }
     
@@ -39,7 +39,7 @@ class AlsoOrderedRepository implements \Maginx\AlsoOrderedProduct\Api\AlsoOrdere
 
     public function getById($id)
     {
-        $object = $this->objectFactory->create();
+        $object = $this->_objectFactory->create();
         $object->load($id);
         if (!$object->getId()) {
             throw new NoSuchEntityException(__('Object with id "%1" does not exist.', $id));
@@ -49,7 +49,7 @@ class AlsoOrderedRepository implements \Maginx\AlsoOrderedProduct\Api\AlsoOrdere
 
     public function create()
     {
-        $object = $this->objectFactory->create();
+        $object = $this->_objectFactory->create();
         return $object;
     }
 
@@ -72,7 +72,7 @@ class AlsoOrderedRepository implements \Maginx\AlsoOrderedProduct\Api\AlsoOrdere
     {
         $searchResults = $this->searchResultsFactory->create();
         $searchResults->setSearchCriteria($criteria);
-        $collection = $this->collectionFactory->create();
+        $collection = $this->_collectionFactory->create();
         foreach ($criteria->getFilterGroups() as $filterGroup) {
             $fields = [];
             $conditions = [];

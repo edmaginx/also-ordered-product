@@ -8,7 +8,6 @@ class AlsoOrdered extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         $this->_init('maginx_alsoorderedproduct_alsoordered', 'maginx_alsoorderedproduct_alsoordered_id');
     }
 
-
     public function getRecordIdBySku($sku)
     {
         $connection = $this->getConnection();
