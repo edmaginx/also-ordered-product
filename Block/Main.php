@@ -18,7 +18,6 @@ class Main extends \Magento\Catalog\Block\Product\AbstractProduct implements \Ma
         \Magento\Checkout\Model\Session $checkoutSession,
         \Magento\Framework\Module\Manager $moduleManager,
         \Maginx\AlsoOrderedProduct\Helper\Data $helper,
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         array $data = []
     ) {
         $this->_checkoutCart = $checkoutCart;
@@ -26,7 +25,6 @@ class Main extends \Magento\Catalog\Block\Product\AbstractProduct implements \Ma
         $this->_checkoutSession = $checkoutSession;
         $this->moduleManager = $moduleManager;
         $this->_helper = $helper;
-        $this->_scopeConfig = $scopeConfig;
         parent::__construct(
             $context,
             $data
