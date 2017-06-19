@@ -37,13 +37,16 @@ if ($isEnable && $exist) {
 
 
     <div class="block-title title">
-        <strong id="block-<?php /* @escapeNotVerified */ echo $class?>-heading" role="heading" aria-level="2"><?php /* @escapeNotVerified */ echo $title; ?></strong>
+        <strong id="block-<?php /* @escapeNotVerified */ echo $class?>-heading" role="heading" aria-level="2">
+        <?php /* @escapeNotVerified */ echo $title; ?></strong>
     </div>
     <div class="block-content content" aria-labelledby="block-<?php /* @escapeNotVerified */ echo $class?>-heading">
         <?php if ($canItemsAddToCart): ?>
             <div class="block-actions">
                 <?php /* @escapeNotVerified */ echo __('Check items to add to the cart or') ?>
-                <button type="button" class="action select" role="select-all"><span><?php /* @escapeNotVerified */ echo __('select all') ?></span></button>
+                <button type="button" class="action select" role="select-all">
+                    <span><?php /* @escapeNotVerified */ echo __('select all') ?></span>
+                </button>
             </div>
         <?php endif; ?>
         <div class="products wrapper grid products-grid products-<?php /* @escapeNotVerified */ echo $type; ?>">
